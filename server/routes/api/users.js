@@ -39,7 +39,8 @@ router.post('/register', (req, res) => {
                     name: req.body.name,
                     email: req.body.email,
                     avatar,
-                    password: req.body.password
+                    password: req.body.password,
+                    identity: req.body.identity
                 });
                 bcrypt.genSalt(10, function(err, salt) {
                     bcrypt.hash(newUser.password, salt, function(err, hash) {
@@ -77,7 +78,8 @@ router.post('/login', (req, res) => {
                 const rule = {
                     id: user.id,
                     name: user.name,
-                    avatar: user.avatar
+                    avatar: user.avatar,
+                    identity: user.identity
                 };
                 //登录后返回token
                 // jwt.sign("规则","加密名字","过期时间","箭头函数")
@@ -112,7 +114,7 @@ router.get(
             id: req.user.id,
             name: req.user.name,
             email: req.user.email,
-
+            identity:req.user.identity
         });
     }
 );
