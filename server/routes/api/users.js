@@ -6,6 +6,7 @@ const gravatar = require('gravatar');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/key');
 
+const passport = require('passport');
 const User = require('../../models/User');
 
 
@@ -94,5 +95,27 @@ router.post('/login', (req, res) => {
         });
     });
 });
+
+// @route  GET api/users/current
+// @desc   return current user
+// @access Private
+// router.get("/current","验证token",(req,res)=>{
+//     res.json({msg:"success"});
+// })
+
+router.get(
+    '/current',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        //拿到/config/passport.js中处理后的用户信息，返回部分属性
+        res.json({
+            id: req.user.id,
+            name: req.user.name,
+            email: req.user.email,
+
+        });
+    }
+);
+
 
 module.exports = router;
