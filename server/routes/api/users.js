@@ -116,6 +116,30 @@ router.get(
         });
     }
 );
+//使用jwt.verify进行token验证
+router.get(
+    '/userinfo',
+    (req, res) => {
+        //从cookie中获取token
+        // console.log(req.cookies); //拿取cookies
+        let token = req.cookies.sid;
+        token =token.replace("Bearer ","");//因为从cookie取，所以要去掉Bearer
+        const decoded  = jwt.verify(token, keys.secretOrKey);
+        User.findById(decoded.id)
+            .then(user => {
+                if(user){
+                    res.json({
+                        id: user.id,
+                        name: user.name,
+                        email: user.email,
+                        avatar: user.avatar,
+                    });
+                }
+                res.json({msg:"fail"});
 
+            })
+            .catch(err => console.log(err));
 
+    }
+);
 module.exports = router;

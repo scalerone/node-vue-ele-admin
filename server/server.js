@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -12,6 +13,8 @@ const users = require('./routes/api/users');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//cookieParser 初始化
+app.use(cookieParser());
 // passport 初始化
 app.use(passport.initialize());
 //passport 配置
