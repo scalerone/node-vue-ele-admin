@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+// 引入users.js
+const users = require('./routes/api/users');
+
 // DB config
 const db = require('./config/key').mongoURI;
 
@@ -14,9 +17,15 @@ mongoose.connect(
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
-app.get("/",(req,res)=>{
-    res.send("hello world");
-})
+
+// app.get("/",(req,res)=>{
+//     res.send("hello world");
+// })
+
+// 使用routes
+// http://127.0.0.1:5001/api/users/test
+app.use('/api/users', users);
+
 const port = process.env.PORT || 5001;
 
 app.listen(port, () => {
