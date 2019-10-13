@@ -112,7 +112,7 @@
     .register {
         position: relative;
         width: 100%;
-        height: 1200px;
+        height: 100%;;
         background-image: url(../assets/bg.jpg);
         background-size: 100% 100%;
     }
