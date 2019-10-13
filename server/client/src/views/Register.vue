@@ -1,5 +1,6 @@
 <template>
     <div class="register">
+        <vue-particles color="#dedede">     </vue-particles>
         <section class="form_container">
             <div class="manage_tip">
                 <span class="title">在线账单后台管理系统</span>
