@@ -63,8 +63,8 @@ export default {
             const decode = jwt_decode(token);
             console.log(decode)
             // 存储数据
-            // this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decode));
-            // this.$store.dispatch("setUser", decode);
+            this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decode));
+            this.$store.dispatch("setUser", decode);
 
             // 页面跳转
             this.$router.push("/index");
@@ -83,6 +83,7 @@ export default {
         (typeof value === "string" && value.trim().length === 0)
       );
     }
+
   }
 };
 </script>

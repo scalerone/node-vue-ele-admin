@@ -37,6 +37,7 @@ const router =  new Router({
 })
 // 添加路由守卫
 router.beforeEach((to, from, next) => {
+
   const isLogin = localStorage.eleToken ? true : false;
   if (to.path == "/login" || to.path == "/register") {
     next();
