@@ -30,7 +30,7 @@ const router =  new Router({
     {
       path: '/index',
       name: 'index',
-      component: Index
+      component: Index,
     }
 
   ]

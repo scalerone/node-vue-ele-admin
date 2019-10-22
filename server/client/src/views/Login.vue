@@ -5,7 +5,7 @@
             <div class="manage_tip">
                 <span class="title">在线账单后台管理系统</span>
             </div>
-            <el-form :model="loginUser" :rules="rules" ref="loginForm" class="loginForm" label-width="60px">
+            <el-form :model="loginUser" :rules="rules" ref="loginForm" class="loginForm" @submit.native.prevent label-width="60px">
                 <el-form-item label="邮箱" prop="email">
                     <el-input v-model="loginUser.email" placeholder="请输入邮箱"></el-input>
                 </el-form-item>
@@ -28,6 +28,19 @@ import jwt_decode from "jwt-decode";
 
 export default {
   name: "login",
+    created(){
+        // let _self = this;
+        // document.onkeydown = function(e){
+        //     if(window.event == undefined){
+        //         var key = e.keyCode;
+        //     }else{
+        //         var  key = window.event.keyCode;
+        //     }
+        //     if(key == 13){
+        //         _self.loginEnter('loginForm');
+        //     }
+        // }
+    },
   data() {
     return {
       loginUser: {
