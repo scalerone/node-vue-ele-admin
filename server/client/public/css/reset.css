@@ -38,6 +38,13 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
+html,
+body {
+    height: 100%;
+}
+#app{
+    height: 100%;
+}
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
