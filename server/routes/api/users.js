@@ -126,7 +126,18 @@ router.get(
         // console.log(req.cookies); //拿取cookies
         let token = req.cookies.sid;
         token =token.replace("Bearer ","");//因为从cookie取，所以要去掉Bearer
-        const decoded  = jwt.verify(token, keys.secretOrKey);
+        //const decoded  = jwt.verify(token, keys.secretOrKey);
+        try {
+            const decoded  = jwt.verify(token, keys.secretOrKey);
+        } catch (error) {
+
+            //token过期 生成新的token
+           // const newToken = getToken(user);
+            //将新token放入Authorization中返回给前端
+          //  ctx.res.setHeader('Authorization', newToken);
+            //  https://segmentfault.com/a/1190000019338195
+            return res.status(401).json('token过期!');
+        }
         User.findById(decoded.id)
             .then(user => {
                 if(user){
