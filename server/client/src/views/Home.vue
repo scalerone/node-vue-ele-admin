@@ -1,8 +1,8 @@
 <template>
     <div class="home">
         <div class="container">
-            <h1 class="title">个人打造的在线后台</h1>
-            <p class="lead"> 专攻术业，成就所托! </p>
+            <h1 class="title">打造优质的在线后台</h1>
+            <p class="lead"> 专攻术业，成就所托</p>
         </div>
     </div>
 </template>
@@ -19,7 +19,7 @@
   height: 100%;
   box-sizing: border-box;
   padding-top: 100px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.41);
   text-align: center;
   color: white;
 }
