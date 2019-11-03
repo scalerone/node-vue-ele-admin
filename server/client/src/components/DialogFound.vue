@@ -89,17 +89,20 @@ export default {
   methods: {
     onSubmit(form) {
       this.$refs[form].validate(valid => {
+          console.log(this.form)
         if (valid) {
           //表单数据验证完成之后，提交数据;
           const url =
             this.dialog.option == "add" ? "add" : `edit/${this.form.id}`;
-          this.$axios.post(`/api/profile/${url}`, this.form).then(res => {
+          this.$axios.post(`/api/profiles/${url}`, this.form).then(res => {
             // 操作成功
             this.$message({
               message: "保存成功！",
               type: "success"
             });
-            this.dialog.show = true;
+            //隐藏dialog
+            this.dialog.show = false;
+            //通过父级更新table列表
             this.$emit("update");
           });
         }

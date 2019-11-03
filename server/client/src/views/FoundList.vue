@@ -183,7 +183,7 @@
             },
             onDeleteMoney(row, index) {
                 // 删除
-                this.$axios.delete(`/api/profile/delete/${row._id}`).then(res => {
+                this.$axios.delete(`/api/profiles/delete/${row._id}`).then(res => {
                     this.$message("删除成功");
                     this.getProfile();
                 });
