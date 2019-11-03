@@ -23,7 +23,12 @@
                </el-form-item>
 
                 <el-form-item class="btnRight">
-                    <el-button type="primary" size ="small" icon="view" @click='onAddMoney()'>添加</el-button>
+                    <el-button
+                            type="primary"
+                            size ="small"
+                            icon="view"
+                            v-if="user.identity=='manager'"
+                            @click='onAddMoney()'>添加</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -108,6 +113,7 @@
                                 type="warning"
                                 icon='edit'
                                 size="small"
+                                v-if="user.identity=='manager'"
                                 @click='onEditMoney(scope.row)'
                         >编辑
                         </el-button>
@@ -115,6 +121,7 @@
                                 type="danger"
                                 icon='delete'
                                 size="small"
+                                v-if="user.identity=='manager'"
                                 @click='onDeleteMoney(scope.row,scope.$index)'
                         >删除
                         </el-button>
@@ -149,6 +156,11 @@
 
     export default {
         name: "fundlist",
+        computed: {
+            user() {
+                return this.$store.getters.user;
+            }
+        },
         data() {
             return {
                 tableData: [],
@@ -293,11 +305,11 @@
                     this.getProfile();
                     return;
                 }
-                console.log(111)
+
                 const stime = this.search_data.startTime.getTime();
                 const etime = this.search_data.endTime.getTime();
-                console.log(stime)
-                console.log(etime)
+                // console.log(stime)
+                // console.log(etime)
                 this.allTableData = this.filterTableData.filter(item => {
                     let date = new Date(item.date);
                     let time = date.getTime();
