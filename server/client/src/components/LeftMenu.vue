@@ -8,7 +8,7 @@
                 active-text-color="#409eff" 
                 class="el-menu-vertical-demo">
                 <router-link to="/home">
-                    <el-menu-item index="0">
+                    <el-menu-item index="0" style="margin-left: -28px;">
                         <i class="fa fa-margin fa-server"></i>
                         <span slot="title">首页</span>
                     </el-menu-item>
