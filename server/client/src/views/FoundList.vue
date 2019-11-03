@@ -102,7 +102,22 @@
                 </el-table-column>
             </el-table>
             <!-- 分页 -->
-
+            <el-row>
+                <el-col :span="24">
+                    <div class="pagination">
+                        <el-pagination
+                                v-if='paginations.total > 0'
+                                :page-sizes="paginations.page_sizes"
+                                :page-size="paginations.page_size"
+                                :layout="paginations.layout"
+                                :total="paginations.total"
+                                :current-page.sync='paginations.page_index'
+                                @current-change='handleCurrentChange'
+                                @size-change='handleSizeChange'>
+                        </el-pagination>
+                    </div>
+                </el-col>
+            </el-row>
         </div>
         <!-- 弹框页面 -->
                 <DialogFound :dialog='dialog' :form='form' @update="getProfile"></DialogFound>
@@ -137,7 +152,7 @@
                 paginations: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
-                    page_size: 5, // 1页显示多少条
+                    page_size: 4, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
@@ -158,10 +173,10 @@
                 // 获取表格数据
                 this.$axios("/api/profiles").then(res => {
                     this.tableData = res.data;
-                    // this.allTableData = res.data;
-                    // this.filterTableData = res.data;
+                    this.allTableData = res.data;
+                    this.filterTableData = res.data;
                     // 设置分页数据
-                    // this.setPaginations();
+                    this.setPaginations();
                 });
             },
             onEditMoney(row) {
@@ -215,6 +230,20 @@
                 this.tableData = table.filter((item, index) => {
                     return index < this.paginations.page_size;
                 });
+                // //数据总数
+                // let nums = this.paginations.page_size * page;
+                // //容器
+                // let tables = [];
+                //
+                // for(let i =sortnu;i<nums;i++){
+                //     if(this.allTableData[i]){
+                //         tables.push(this.allTableData[1]);
+                //
+                //     }
+                //     this.tableData = tables;
+                // }
+
+
             },
             handleSizeChange(page_size) {
                 // 切换size
@@ -259,10 +288,17 @@
 </script>
 <style scoped>
 
-
+    .fillcontain {
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+        box-sizing: border-box;
+    }
     .btnRight {
         float: right;
     }
-
-
+    .pagination {
+        text-align: right;
+        margin-top: 10px;
+    }
 </style>
