@@ -1,7 +1,27 @@
 <template>
     <div class="fillcontain">
         <div>
-           <el-form>
+           <el-form
+                   :inline="true"
+                   ref="search_data"
+                   :model='search_data'>
+
+               <el-form-item label="投标时间筛选:" class="fl">
+                   <el-date-picker
+                           v-model="search_data.startTime"
+                           type="datetime"
+                           placeholder="选择开始时间">
+                   </el-date-picker> --
+                   <el-date-picker
+                           v-model="search_data.endTime"
+                           type="datetime"
+                           placeholder="选择结束时间">
+                   </el-date-picker>
+               </el-form-item>
+               <el-form-item class="fl">
+                   <el-button type="primary" size ="small" icon="search" @click='onScreeoutMoney()'>筛选</el-button>
+               </el-form-item>
+
                 <el-form-item class="btnRight">
                     <el-button type="primary" size ="small" icon="view" @click='onAddMoney()'>添加</el-button>
                 </el-form-item>
@@ -273,8 +293,11 @@
                     this.getProfile();
                     return;
                 }
+                console.log(111)
                 const stime = this.search_data.startTime.getTime();
                 const etime = this.search_data.endTime.getTime();
+                console.log(stime)
+                console.log(etime)
                 this.allTableData = this.filterTableData.filter(item => {
                     let date = new Date(item.date);
                     let time = date.getTime();
@@ -293,6 +316,9 @@
         height: 100%;
         padding: 16px;
         box-sizing: border-box;
+    }
+    .fl{
+        float: left;
     }
     .btnRight {
         float: right;
