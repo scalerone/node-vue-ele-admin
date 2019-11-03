@@ -10,7 +10,7 @@ import axios from './http'
 Vue.use(VueParticles);
 Vue.use(ElementUI);
 
-Vue.prototype.$axios = axios
+Vue.prototype.$axios = axios;// 将api挂载到vue的原型上-供全局使用
 
 Vue.config.productionTip = false
 
