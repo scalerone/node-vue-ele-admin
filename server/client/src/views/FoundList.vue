@@ -1,6 +1,12 @@
 <template>
     <div class="fillcontain">
-
+        <div>
+           <el-form>
+                <el-form-item class="btnRight">
+                    <el-button type="primary" size ="small" icon="view" @click='onAddMoney()'>添加</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
         <div class="table_container">
             <el-table
                     v-if="tableData.length > 0"
@@ -99,12 +105,12 @@
 
         </div>
         <!-- 弹框页面 -->
-        <!--        <DialogFound :dialog='dialog' :form='form' @update="getProfile"></DialogFound>-->
+                <DialogFound :dialog='dialog' :form='form' @update="getProfile"></DialogFound>
     </div>
 </template>
 
 <script>
-    // import DialogFound from "../components/DialogFound";
+    import DialogFound from "../components/DialogFound";
 
     export default {
         name: "fundlist",
@@ -142,7 +148,7 @@
             };
         },
         components: {
-            // DialogFound
+            DialogFound
         },
         created() {
             this.getProfile();
@@ -252,19 +258,11 @@
     };
 </script>
 <style scoped>
-    .fillcontain {
-        width: 100%;
-        height: 100%;
-        padding: 16px;
-        box-sizing: border-box;
-    }
+
 
     .btnRight {
         float: right;
     }
 
-    .pagination {
-        text-align: right;
-        margin-top: 10px;
-    }
+
 </style>
