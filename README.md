@@ -167,7 +167,7 @@ npm install  concurrently -S
 1.优化：
 a.如果打包太大了，使用cdn的压缩文件进行连接  
 b.参考webpack的配置 关于webpack4的打包优化的14个知识点    
-https://juejin.im/post/5cea1e1ae51d4510664d1652#heading-1
+https://juejin.im/post/5cea1e1ae51d4510664d1652#heading-1    
 2.koa+jwt实现token验证与刷新
 https://segmentfault.com/a/1190000019338195
 
